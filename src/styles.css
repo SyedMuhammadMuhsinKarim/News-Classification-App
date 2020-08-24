@@ -1,0 +1,24 @@
+/* .App {
+  font-family: sans-serif;
+  text-align: center;
+} */
+
+.input-text {
+  background-color: red;
+}
+
+* {
+  font-family: "NafeesRegular";
+  direction: rtl !important;
+  font-weight: normal;
+  font-style: normal;
+  text-align: right;
+}
+
+li {
+  direction: rtl;
+}
+
+FormControl {
+  margin-top: 10px;
+}
