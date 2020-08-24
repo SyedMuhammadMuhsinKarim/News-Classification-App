@@ -41,6 +41,7 @@ export default function App() {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    setResponse("");
   };
 
   useEffect(() => {
@@ -92,7 +93,26 @@ export default function App() {
           </InputGroup.Prepend>
         </InputGroup>
 
-        {label && (
+        {loading && (
+          <>
+            <span
+              class="spinner-grow text-primary"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="spinner-grow text-primary"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="spinner-grow text-primary"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </>
+        )}
+        {label && response && (
           <p>
             کٹیگری:
             <span className="badge badge-primary pt-2 pb-2">{label}</span>
