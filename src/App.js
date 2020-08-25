@@ -10,22 +10,7 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
-const urduText = {
-  inputText: "نیوز ٹائٹل",
-  buttonText: "سبمنٹ"
-};
-
-const labels = {
-  "6": "کاروبار",
-  "3": "شوبز (ثقافت)",
-  "5": "عالمی",
-  "1": "دلچسپ و عجیب",
-  "4": "صحت",
-  "8": "کھیل",
-  "2": "سائنس و ٹیکنالوجی",
-  "7": "کورونا وائرس",
-  "0": "اسلامی"
-};
+import { urduText, labels, regexEng } from "./constants";
 
 export default function App() {
   const [inputValue, setInputValue] = React.useState("");
@@ -41,7 +26,7 @@ export default function App() {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    setResponse("");
+    if (error) return setError(null);
   };
 
   useEffect(() => {
@@ -69,68 +54,85 @@ export default function App() {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home" className="mx-auto">
-          نیوز ٹائٹل کٹیگریئزر
-        </Navbar.Brand>
-      </Navbar>
+      <AppBar />
       <Container>
-        <InputGroup className="mt-3 mb-3">
-          <FormControl
-            placeholder={urduText.inputText}
-            className="rounded form-control form-item"
-            onChange={handleChange}
-          />
-          <InputGroup.Prepend>
-            <Button
-              onClick={handleOnSubmit}
-              className="rounded-left"
-              variant="danger"
-              disabled={!inputValue}
-            >
-              {urduText.buttonText}
-            </Button>
-          </InputGroup.Prepend>
-        </InputGroup>
+        <SubmitForm
+          inputValue={inputValue}
+          handleChange={handleChange}
+          handleOnSubmit={handleOnSubmit}
+        />
 
-        {loading && (
-          <>
-            <span
-              class="spinner-grow text-primary"
-              role="status"
-              aria-hidden="true"
-            ></span>
-            <span
-              class="spinner-grow text-primary"
-              role="status"
-              aria-hidden="true"
-            ></span>
-            <span
-              class="spinner-grow text-primary"
-              role="status"
-              aria-hidden="true"
-            ></span>
-          </>
-        )}
-        {label && response && (
+        {label && (
           <p>
             کٹیگری:
             <span className="badge badge-primary pt-2 pb-2">{label}</span>
           </p>
         )}
 
-        <h5>
-          <b>ضروری ہدایات:</b>
-        </h5>
-        <ul>
-          <li>
-            یہ ایپ اردو خبروں کی سرخیوں کی مدد سے اس کا زمرہ (کٹیگری) بتاتی ہے{" "}
-          </li>
-          <li>
-            زمرہ جات میں صرف{" "}
-            <b>
-              کاروبار، کھیل، صحت، عالمی، سائنس ایںڈ ٹیکنالوجی، شوبز، دلچسپ،
-              اسلام اور کورونا وائرس{" "}
+        {error && console.log(`Error: ${error}`)}
+
+        <Texts />
+      </Container>
+    </>
+  );
+}
+
+const AppBar = () => (
+  <Navbar bg="dark" variant="dark">
+    <Navbar.Brand href="#home" className="mx-auto">
+      {urduText.brand}
+    </Navbar.Brand>
+  </Navbar>
+);
+
+const SubmitForm = ({ handleChange, handleOnSubmit, inputValue }) => (
+  <InputGroup className="mt-3 mb-3">
+    <FormControl
+      placeholder={urduText.inputText}
+      className="rounded form-control form-item"
+      onChange={handleChange}
+    />
+    <InputGroup.Prepend>
+      <Button
+        onClick={handleOnSubmit}
+        className="rounded-left"
+        variant="danger"
+        disabled={!inputValue}
+      >
+        {urduText.buttonText}
+      </Button>
+    </InputGroup.Prepend>
+  </InputGroup>
+);
+
+const Texts = () => (
+  <>
+    <h5>
+      <b>ضروری ہدایات:</b>
+    </h5>
+    <ul>
+      <li>
+        یہ ایپ اردو خبروں کی سرخیوں کی مدد سے اس کا زمرہ (کٹیگری) بتاتی ہے{" "}
+      </li>
+      <li>
+        زمرہ جات میں صرف{" "}
+        <b>
+          کاروبار، کھیل، صحت، عالمی، سائنس ایںڈ ٹیکنالوجی، شوبز، دلچسپ، اسلام
+          اور کورونا وائرس{" "}
+        </b>
+        شامل ہیں،{" "}
+      </li>
+      <li>
+        یہ ایپ صرف <b>اردو حرف تہجی</b> میں لکھے جملوں پر ہی کارآمد ہے
+      </li>
+      <li>
+        یہ ایک مصنوعی ذہانت (مشین لرننگ) پر لکھی گئی ایپلیکیشن ہے جس کی ایکوریسی
+        ریٹ 88 ٪ہے۔لہذا غلطیوں کا امکان موجود ہے۔
+      </li>
+    </ul>
+  </>
+);
+
             </b>
             شامل ہیں،{" "}
           </li>
@@ -145,4 +147,3 @@ export default function App() {
       </Container>
     </>
   );
-}
