@@ -97,7 +97,7 @@ const SubmitForm = ({ handleChange, handleOnSubmit, inputValue }) => (
         onClick={handleOnSubmit}
         className="rounded-left"
         variant="danger"
-        disabled={!inputValue}
+        disabled={!inputValue || regexEng.test(inputValue)}
       >
         {urduText.buttonText}
       </Button>
