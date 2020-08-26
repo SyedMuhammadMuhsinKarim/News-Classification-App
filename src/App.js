@@ -89,7 +89,7 @@ const SubmitForm = ({ handleChange, handleOnSubmit, inputValue }) => (
   <InputGroup className="mt-3 mb-3">
     <FormControl
       placeholder={urduText.inputText}
-      className="rounded form-control form-item"
+      className="rounded form-control form-item p-4"
       onChange={handleChange}
     />
     <InputGroup.Prepend>
