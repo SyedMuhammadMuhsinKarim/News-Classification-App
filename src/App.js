@@ -62,7 +62,27 @@ export default function App() {
           handleOnSubmit={handleOnSubmit}
         />
 
-        {label && (
+        {loading && (
+          <>
+            <span
+              class="spinner-grow text-primary"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="spinner-grow text-primary"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="spinner-grow text-primary"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </>
+        )}
+
+        {label && !loading && (
           <p>
             کٹیگری:
             <span className="badge badge-primary pt-2 pb-2">{label}</span>
