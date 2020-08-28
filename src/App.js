@@ -65,17 +65,17 @@ export default function App() {
         {loading && (
           <>
             <span
-              class="spinner-grow text-primary"
+              className="spinner-grow text-primary"
               role="status"
               aria-hidden="true"
             ></span>
             <span
-              class="spinner-grow text-primary"
+              className="spinner-grow text-primary"
               role="status"
               aria-hidden="true"
             ></span>
             <span
-              class="spinner-grow text-primary"
+              className="spinner-grow text-primary"
               role="status"
               aria-hidden="true"
             ></span>
