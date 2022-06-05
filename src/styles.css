@@ -22,3 +22,7 @@ li {
 FormControl {
   margin-top: 10px;
 }
+
+.form-control {
+  padding: 4.5% !important;
+}

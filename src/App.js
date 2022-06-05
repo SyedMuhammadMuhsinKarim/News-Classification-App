@@ -40,6 +40,7 @@ export default function App() {
           setLoading(false);
         })
         .catch((e) => {
+          console.log(e);
           setError(e);
           setLoading(false);
         });
@@ -48,7 +49,17 @@ export default function App() {
 
   useEffect(() => {
     if (response) {
-      setLabel(labels[response.labels]);
+      console.log(response);
+
+      if (response.labels.isArray) {
+        let x = response.labels.map((x) => {
+          console.log(x);
+          return labels[x];
+        });
+        setLabel(x);
+      } else {
+        setLabel(labels[response.labels]);
+      }
     }
   }, [response]);
 

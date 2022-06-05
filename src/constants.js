@@ -1,7 +1,7 @@
 export const urduText = {
-  inputText: "نیوز ہیڈلائن",
-  buttonText: "سبمٹ",
-  brand: "نیوز ٹائٹل کٹیگریئزر"
+  inputText: " نیوز ہیڈلائن یہاں لکھیں۔۔۔",
+  buttonText: "زمررہ معلوم کریں",
+  brand: "نیوز ہیڈلائنز کٹیگریئزر"
 };
 
 export const labels = {
